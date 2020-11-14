@@ -104,6 +104,14 @@ button:hover{
 button:active{
     transform:scale(0.99);
 }
+.countdown{
+    margin-top:35%;
+    font-size:100px;
+    font-weight: 3;
+    text-align: center;
+    user-select: none;
+    cursor:pointer;
+}
 @media screen and (max-width:500px){
     .game-container{
         width:85vw;
