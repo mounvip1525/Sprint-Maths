@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css?family=Oxanium|PT+Mono&display=swap");
+
+*{
+    box-sizing: border-box;
+}
+body{
+    margin:0;
+    padding:0;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    font-family: PT Mono, sans-serif;
+    background:-webkit-linear-gradient(90deg,#222831 20%,#f05454 20% ,#30475e 80%,#222831 80%);
+}
+.game-container{
+    margin:3%;
+    width:35%;
+    height:85%;
+    position:relative;
+    background:white;
+    border-radius: 5px;
+    border: 1px solid #30475e;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
+    user-select: none;
+}
+.header{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background:#5c6e91;
+    padding:3px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Oxanium, sans-serif;
+    letter-spacing: 3px;
+    text-shadow: 1px 5px 8px #222831;
+}
+@media screen and (max-width:500px){
+    .game-container{
+        width:85vw;
+        margin-top:10%;
+    }
+}
