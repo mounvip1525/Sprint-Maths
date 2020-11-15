@@ -32,7 +32,7 @@ body{
     text-transform: uppercase;
     font-family: Oxanium, sans-serif;
     letter-spacing: 3px;
-    text-shadow: 1px 5px 8px #222831;
+    text-shadow: 1px 5px 8px #43484e;
 }
 .card{
     margin:5px auto 10px;
@@ -111,6 +111,89 @@ button:active{
     text-align: center;
     user-select: none;
     cursor:pointer;
+}
+.question-container{
+    height:400px;
+    overflow-y: scroll;
+    position:relative;
+    -ms-overflow-style:none;
+}
+.question-container::-webkit-scrollbar{
+    display:none;
+}
+.question{
+    display:flex;
+    align-items: baseline;
+    justify-content: space-between;
+    height:55px;
+    margin:0 50px;
+    user-select: none;
+}
+.selected-question{
+    background:#a3b0c7;
+    position:fixed;
+    top:285px;
+    z-index:1;
+    width:440px;
+    height:60px;
+    opacity:0.5;
+}
+.game-buttons{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background:#5c6e91;
+    padding:11.5px;
+    text-align: center;
+}
+.wrong{
+    width:40%;
+    background:rgb(228, 64, 64);
+    margin-right:25px;
+}
+.right{
+    width:40%;
+    background:rgb(65, 156, 65);
+}
+.glyphicon{
+    margin-right:5px;
+}
+.score-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.title{
+    margin-top: 15%;
+    font-size:40px;
+}
+.total-time{
+    font-size:100px;
+    margin:0;
+    color:rgb(65,156,65);
+}
+.base-time{
+    margin-top:20px;
+    margin-bottom: 0;
+    font-size:20px;
+}
+.penalty-time{
+    color:rgb(228,64,64);
+    font-size:20px;
+}
+.score-footer{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-top:13.5%;
+    width:100%;
+    height:90px;
+    display:flex;
+    justify-content: center;
+    background:#a3b0c7;
+}
+.play-again{
+    width:60%;
+    margin-top: 5%;
 }
 @media screen and (max-width:500px){
     .game-container{
