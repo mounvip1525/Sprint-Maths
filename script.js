@@ -25,6 +25,27 @@ let equationObj={};
 const wrongFormat=[];
 let questionAmount=0;
 
+
+//Display 3,2,1,GO!
+function countdownStart(){
+    countdown.textContent='3';
+    setTimeout(()=>{
+        countdown.textContent='2';
+    },1000);
+    setTimeout(()=>{
+        countdown.textContent='1';
+    },2000);
+    setTimeout(()=>{
+        countdown.textContent='GO!';
+    },3000);
+}
+function showCountdown(){
+    splashPage.hidden=true;
+    countdownPage.hidden=false;
+    countdownStart();
+}
+
+//To retrieve the question amount if its checked
 function getRadioValue(){
     let radioValue;
     radioInputs.forEach(radioInput=>{
@@ -39,6 +60,10 @@ function selectQuestionAmount(e){
     e.preventDefault();
     questionAmount=getRadioValue();
     console.log('question number:',questionAmount);
+    //only if a selection is made then countdown has to be shown
+    if(questionAmount){
+        showCountdown();
+    }
 }
 
 selectionContainer.forEach(select=>{
