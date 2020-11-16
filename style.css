@@ -61,12 +61,13 @@ input[type='radio']{
 label{
     left:20px;
     top:20px;
-    font-size:25px;
+    font-size:20px;
     position:relative;
 }
 .selected-label{
-    background:#79869e;
+    background:#a2b0c9;
     color:white;
+    transform: scale(1.05);
 }
 .best-score{
     display:flex;
@@ -74,12 +75,12 @@ label{
     justify-content: center;
     text-align: center;
     font-size:15px;
-    top:-50px;
+    top:-35px;
     position:relative;
-    left:120px;
+    left:90px;
 }
 .best-score span:last-child{
-    font-size:20px;
+    font-size:15px;
 }
 .footer{
     margin-top:8%;
