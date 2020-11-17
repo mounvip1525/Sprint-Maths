@@ -22,9 +22,90 @@ let equationsArray=[];
 let firstNum=0;
 let secondNum=0;
 let equationObj={};
-const wrongFormat=[];
 let questionAmount=0;
+const wrongFormat=[];
 
+
+function showCountdown(){
+    splashPage.hidden=true;
+    countdownPage.hidden=false;
+    countdownStart();
+    populateGamePage();
+    setTimeout(showGamePage,400);
+}
+
+function showGamePage(){
+    gamePage.hidden=false;
+    countdownPage.hidden=true;
+}
+
+function getRandomInt(max){
+    return Math.floor(Math.random()*Math.floor(max))
+}
+
+function populateGamePage(){
+    questionContainer.textContent='';
+    const topSpacer=document.createElement('div');
+    topSpacer.classList.add('height-240');
+    const selectedQuestion=document.createElement('div');
+    selectedQuestion.classList.add('selected-question');
+    questionContainer.append(topSpacer,selectedQuestion);
+    createEquations();
+    showEquationsToDOM();
+    bottomSpacer=document.createElement('div');
+    bottomSpacer.classList.add('height-500');
+    questionContainer.appendChild(bottomSpacer);
+}
+
+function showEquationsToDOM(){
+    equationsArray.forEach(equation=>{
+        const question=document.createElement('div');
+        question.classList.add('question');
+        const questionText=document.createElement('h3');
+        questionText.textContent=equation.value;
+        question.appendChild(questionText);
+        questionContainer.appendChild(question);
+    });
+}
+
+function createEquations(){
+    const correctQuestions=getRandomInt(questionAmount);
+    const wrongQuestions=questionAmount-correctQuestions;
+    // console.log('No. of correct questions',correctQuestions);
+    // console.log('No. of wrong questions',wrongQuestions);
+
+    //Generating correct equations
+    for(i=0;i<correctQuestions;i++){
+        firstNum=getRandomInt(15);
+        secondNum=getRandomInt(15);
+        const correctResult=firstNum*secondNum;
+        const equation=`${firstNum} x ${secondNum} = ${correctResult}`;
+        equationObj={
+            value:equation,
+            evaluated:'true'
+        }
+        equationsArray.push(equationObj);
+    }
+
+    //Genterating wrong equations
+    for(i=0;i<wrongQuestions;i++){
+        firstNum=getRandomInt(15);
+        secondNum=getRandomInt(15);
+        const correctResult=firstNum*secondNum;
+        wrongFormat[0]=`${firstNum+2} x ${secondNum} = ${correctResult}`;
+        wrongFormat[1]=`${firstNum} x ${secondNum-3} = ${correctResult}`;
+        wrongFormat[2]=`${firstNum} x ${secondNum} = ${correctResult+1}`;
+        const formatChoice=getRandomInt(3);
+        const equation=wrongFormat[formatChoice];
+        equationObj={
+            value:equation,
+            evaluated:'false'
+        }
+        equationsArray.push(equationObj);
+    }
+    shuffle(equationsArray);
+    // console.log('Equations array:',equationsArray);
+}
 
 //Display 3,2,1,GO!
 function countdownStart(){
@@ -38,11 +119,6 @@ function countdownStart(){
     setTimeout(()=>{
         countdown.textContent='GO!';
     },3000);
-}
-function showCountdown(){
-    splashPage.hidden=true;
-    countdownPage.hidden=false;
-    countdownStart();
 }
 
 //To retrieve the question amount if its checked
@@ -59,7 +135,7 @@ function getRadioValue(){
 function selectQuestionAmount(e){
     e.preventDefault();
     questionAmount=getRadioValue();
-    console.log('question number:',questionAmount);
+    console.log('total question number:',questionAmount);
     //only if a selection is made then countdown has to be shown
     if(questionAmount){
         showCountdown();
