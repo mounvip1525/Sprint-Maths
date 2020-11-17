@@ -25,6 +25,7 @@ let secondNum=0;
 let equationObj={};
 let questionAmount=0;
 const wrongFormat=[];
+let bestScoresArray=[];
 
 //Time
 let timer;
@@ -32,10 +33,32 @@ let timePlayed=0;
 let baseTime=0;
 let penaltyTime=0;
 let totalTime=0;
-let finalTimeDisplay=0;
+let finalTimeDisplay='0.0';
 
 //scroll
 let valueY=0;
+
+function showBestScoresToDOM(){
+    bestScores.forEach((bestScore,index)=>{
+        const bestScoreEl=bestScore;
+        bestScoreEl.textContent=`${bestScoresArray[index].bestScore}`;
+    });
+}
+
+function getSavedBestScores(){
+    if(localStorage.getItem('bestScores')){
+        bestScoresArray=JSON.parse(localStorage.bestScores);
+    } else {
+        bestScoresArray=[
+                {questions: 10, bestScore:finalTimeDisplay},
+                {questions: 25, bestScore:finalTimeDisplay},
+                {questions: 50, bestScore:finalTimeDisplay},
+                {questions: 99, bestScore:finalTimeDisplay},
+        ];
+        localStorage.setItem('bestScores',JSON.stringify(bestScoresArray));
+    }
+    showBestScoresToDOM();
+}
 
 function playAgain(){
     gamePage.addEventListener('click',startTimer);
@@ -239,3 +262,5 @@ selectionContainer.forEach(select=>{
 });
 selectionForm.addEventListener('submit',selectQuestionAmount);
 gamePage.addEventListener('click',startTimer); 
+
+getSavedBestScores();
