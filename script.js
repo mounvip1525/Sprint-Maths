@@ -37,22 +37,52 @@ let finalTimeDisplay=0;
 //scroll
 let valueY=0;
 
+function playAgain(){
+    gamePage.addEventListener('click',startTimer);
+    scorePage.hidden=true;
+    splashPage.hidden=false;
+    equationsArray=[];
+    playerGuessArray=[];
+    valueY=0;
+    playAgain.hidden=false;
+}
+
+function showScorePage(){
+    setTimeout(()=>{
+        playAgainBtn.hidden=false;
+    },1500);
+    gamePage.hidden=true;
+    scorePage.hidden=false;
+}
+
+function showScoresToDOM(){
+    finalTimeDisplay=totalTime.toFixed(1);
+    baseTime=timePlayed.toFixed(1);
+    penaltyTime=penaltyTime.toFixed(1);
+    baseTimeEl.textContent=`Base Time: ${baseTime}s`;
+    penaltyTimeEl.textContent=`Penalty: +${penaltyTime}s`;
+    finalTimeEl.textContent=`${finalTimeDisplay}s`;
+    //Scroll to the top of the page so that when next game is played, selected-question is properly placed
+    questionContainer.scrollTo({top:0,behavior:'instant'});
+    showScorePage();
+}
+
 //Stop the timer, Process results and rendering the score page
 function checkTime(){
-    console.log(timePlayed);
+    // console.log(timePlayed);
     if(playerGuessArray.length == questionAmount){
-        console.log('PLayer Guess array',playerGuessArray);
+        // console.log('PLayer Guess array',playerGuessArray);
         clearInterval(timer);
         equationsArray.forEach((equation,index)=>{
             if(equation.evaluated===playerGuessArray[index]){
             //No penalty
             } else {
-                console.log('penalty')
                 penaltyTime += 0.5;
             }
         });
         totalTime=timePlayed+penaltyTime;
-        console.log('Time played',timePlayed,'Penalty',penaltyTime,'Total time',totalTime);
+        // console.log('Time played',timePlayed,'Penalty',penaltyTime,'Total time',totalTime);
+        showScoresToDOM();
     }
 }
 
@@ -190,7 +220,7 @@ function getRadioValue(){
 function selectQuestionAmount(e){
     e.preventDefault();
     questionAmount=getRadioValue();
-    console.log('total question number:',questionAmount);
+    // console.log('total question number:',questionAmount);
     //only if a selection is made then countdown has to be shown
     if(questionAmount){
         showCountdown();
