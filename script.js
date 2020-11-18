@@ -44,7 +44,7 @@ function showBestScoresToDOM(){
         bestScoreEl.textContent=`${bestScoresArray[index].bestScore}`;
     });
 }
-
+//Retrieve or set data in local storage
 function getSavedBestScores(){
     if(localStorage.getItem('bestScores')){
         bestScoresArray=JSON.parse(localStorage.bestScores);
@@ -58,6 +58,20 @@ function getSavedBestScores(){
         localStorage.setItem('bestScores',JSON.stringify(bestScoresArray));
     }
     showBestScoresToDOM();
+}
+
+function updateBestScores(){
+    bestScoresArray.forEach((score,index)=>{
+        if(questionAmount == score.questions){
+            const savedBestScore=bestScoresArray[index].bestScore;
+            console.log(savedBestScore)
+            if(savedBestScore === 0 || savedBestScore > totalTime){
+                bestScoresArray[index].bestScore=finalTimeDisplay;
+            }
+        }
+    });
+    showBestScoresToDOM();
+    localStorage.setItem('bestScores',JSON.stringify(bestScoresArray));
 }
 
 function playAgain(){
@@ -84,7 +98,8 @@ function showScoresToDOM(){
     penaltyTime=penaltyTime.toFixed(1);
     baseTimeEl.textContent=`Base Time: ${baseTime}s`;
     penaltyTimeEl.textContent=`Penalty: +${penaltyTime}s`;
-    finalTimeEl.textContent=`${finalTimeDisplay}s`;
+    finalTimeEl.textContent=`${finalTimeDisplay}`;
+    updateBestScores();
     //Scroll to the top of the page so that when next game is played, selected-question is properly placed
     questionContainer.scrollTo({top:0,behavior:'instant'});
     showScorePage();
