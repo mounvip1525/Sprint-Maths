@@ -156,7 +156,7 @@ function showCountdown(){
     countdownPage.hidden=false;
     countdownStart();
     populateGamePage();
-    setTimeout(showGamePage,400);
+    setTimeout(showGamePage,4000);
 }
 
 function showGamePage(){
