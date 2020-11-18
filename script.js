@@ -41,7 +41,7 @@ let valueY=0;
 function showBestScoresToDOM(){
     bestScores.forEach((bestScore,index)=>{
         const bestScoreEl=bestScore;
-        bestScoreEl.textContent=`${bestScoresArray[index].bestScore}`;
+        bestScoreEl.textContent=`${bestScoresArray[index].bestScore}s`;
     });
 }
 //Retrieve or set data in local storage
@@ -63,8 +63,10 @@ function getSavedBestScores(){
 function updateBestScores(){
     bestScoresArray.forEach((score,index)=>{
         if(questionAmount == score.questions){
-            const savedBestScore=bestScoresArray[index].bestScore;
-            console.log(savedBestScore)
+            let savedBestScore=bestScoresArray[index].bestScore; //Returns in the form of 0.0's' so to remove it we use substring
+            savedBestScore=savedBestScore.substring(0,savedBestScore.length-1);
+            savedBestScore=Number(savedBestScore);
+            // console.log(savedBestScore)
             if(savedBestScore === 0 || savedBestScore > totalTime){
                 bestScoresArray[index].bestScore=finalTimeDisplay;
             }
@@ -98,7 +100,7 @@ function showScoresToDOM(){
     penaltyTime=penaltyTime.toFixed(1);
     baseTimeEl.textContent=`Base Time: ${baseTime}s`;
     penaltyTimeEl.textContent=`Penalty: +${penaltyTime}s`;
-    finalTimeEl.textContent=`${finalTimeDisplay}`;
+    finalTimeEl.textContent=`${finalTimeDisplay}s`;
     updateBestScores();
     //Scroll to the top of the page so that when next game is played, selected-question is properly placed
     questionContainer.scrollTo({top:0,behavior:'instant'});
