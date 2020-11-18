@@ -11,10 +11,10 @@ body{
     display:flex;
     justify-content: center;
     font-family: PT Mono, sans-serif;
-    background:-webkit-linear-gradient(90deg,#222831 20%,#f05454 20% ,#30475e 80%,#222831 80%);
+    background:-webkit-linear-gradient(90deg,#222831 20%,#a2b0c9 20% ,#30475e 80%,#222831 80%);
 }
 .game-container{
-    margin:3%;
+    margin:2%;
     width:35%;
     height:90%;
     position:relative;
@@ -27,7 +27,7 @@ body{
 .header{
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background:#5c6e91;
+    background:#a2b0c9;
     padding:3px;
     text-align: center;
     text-transform: uppercase;
@@ -86,7 +86,7 @@ label{
     margin-top:8%;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background:#5c6e91;
+    background:#a2b0c9;
     padding:10px;
     text-align: center;
     height:50%;
@@ -209,6 +209,10 @@ button:active{
 @media screen and (max-width:500px){
     .game-container{
         width:85vw;
-        margin-top:10%;
+        margin-top:25%;
+        height:70%;
+    }
+    .selected-question{
+        width:350px;
     }
 }
