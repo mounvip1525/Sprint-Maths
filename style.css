@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body{
-    overflow: hidden;
+    /* overflow: hidden; */
     margin:0;
     padding:0;
     height:100vh;
@@ -67,7 +67,7 @@ label{
 .selected-label{
     background:#a2b0c9;
     color:white;
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
 }
 .best-score{
     display:flex;
@@ -135,7 +135,7 @@ button:active{
 .selected-question{
     background:#a3b0c7;
     position:fixed;
-    top:285px;
+    top:275px;
     z-index:1;
     width:445px;
     height:60px;
